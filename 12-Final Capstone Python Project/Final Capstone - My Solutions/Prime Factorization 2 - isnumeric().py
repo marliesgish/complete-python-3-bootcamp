@@ -6,14 +6,11 @@ Have the user enter a number and find all Prime Factors
 def get_primes(max_range):
     primes = [2]
     
-    if max_range < 2:
-        print(f'There are 0 prime numbers in this range of numbers.')
-    else:
-        numbers = list(range(3, max_range+1, 2))
-        for n in numbers:
-            is_prime(n)
-            if is_prime(n):
-                primes.append(n)
+    numbers = list(range(3, max_range+1, 2))
+    for n in numbers:
+        is_prime(n)
+        if is_prime(n):
+            primes.append(n)
     return primes
 
 
@@ -37,8 +34,11 @@ while True:
     max_range = (input("Provide a number and see all the prime numbers up to this number.\n"))
 
     if max_range.isnumeric():
-        result = get_primes(int(max_range))
-        print_primes(result)
+        if int(max_range) < 2:
+            print('There are 0 prime numbers in this range of numbers.')
+        else:
+            result = get_primes(int(max_range))
+            print_primes(result)
         break
     else:
         print("This is not a number.")
